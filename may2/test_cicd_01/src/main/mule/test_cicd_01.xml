@@ -7,9 +7,15 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6b1022bc-da28-492e-bc8e-14c813a6360c" >
 		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
-	<configuration-properties doc:name="Configuration properties" doc:id="e053ddde-1978-4d92-a277-889c88215109" file="dev.properites" />
+	<configuration-properties doc:name="Configuration properties" doc:id="e053ddde-1978-4d92-a277-889c88215109" file="dev.properties" />
 	<flow name="test_cicd_01Flow" doc:id="b5a4fb4c-b5a7-485d-9c54-6b7324882fa0" >
-		<http:listener doc:name="Listener" doc:id="100c991e-419c-4ef1-8363-45b4225a1888" config-ref="HTTP_Listener_config" path="/cicd"/>
+		<http:listener doc:name="Listener" doc:id="100c991e-419c-4ef1-8363-45b4225a1888" config-ref="HTTP_Listener_config" path="/cicd">
+			<http:response >
+				<http:body ><![CDATA[#[output application/json
+---
+payload]]]></http:body>
+			</http:response>
+		</http:listener>
 		<set-payload value='#["hi"]' doc:name="Set Payload" doc:id="37921ee0-e19e-4c9b-94f6-f61839fe8a09" />
 	</flow>
 </mule>
