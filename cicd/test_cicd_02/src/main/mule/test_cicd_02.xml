@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	
+	
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="309d3bb5-2ac2-4c61-bdda-86ee95657012" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="9ba93e44-4b85-4183-86b1-ec305c8bd8f3" file="dev.properties" />
+	<flow name="test_cicd_01Flow" doc:id="46b485e5-68b6-4f37-ac02-fef0cfc39f43" >
+		<http:listener doc:name="Listener" doc:id="83743d50-5ceb-47c1-9eb8-904d306e1adb" config-ref="HTTP_Listener_config" path="/cicd">
+			<http:response >
+				<http:body ><![CDATA[#[output application/json
+---
+payload]]]></http:body>
+			</http:response>
+		</http:listener>
+		<set-payload value='#["hiii"]' doc:name="Set Payload" doc:id="aab31d05-9b59-4d69-ac6c-b5ac12e05bab" />
+	</flow>
+	
+	
+	
+	
+	
+	
+	</mule>

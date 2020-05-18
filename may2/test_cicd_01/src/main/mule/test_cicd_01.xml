@@ -16,6 +16,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 payload]]]></http:body>
 			</http:response>
 		</http:listener>
-		<set-payload value='#["hi"]' doc:name="Set Payload" doc:id="37921ee0-e19e-4c9b-94f6-f61839fe8a09" />
+		<set-payload value='#["hiii"]' doc:name="Set Payload" doc:id="37921ee0-e19e-4c9b-94f6-f61839fe8a09" />
 	</flow>
 </mule>
